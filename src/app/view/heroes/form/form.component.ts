@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-form',
@@ -12,7 +13,7 @@ export class FormComponent implements OnInit{
     name:"Edgar"
   }
   hide = true;
-  
+
   clickEvent(event: MouseEvent) {
     this.hide = !this.hide;
     event.stopPropagation();
@@ -20,7 +21,7 @@ export class FormComponent implements OnInit{
 
   formGroup!:FormGroup;
 
-  constructor(private formB:FormBuilder){
+  constructor(private formB:FormBuilder, private userService:UsuarioService){
 
   }
 
@@ -38,6 +39,6 @@ export class FormComponent implements OnInit{
   }
 
   submit(){
-    console.log(this.formGroup.value);
+    this.userService.addData(this.formGroup.value)
   }
 }
